@@ -12,11 +12,11 @@ public class DataParser
 	/**
 	 * Obtains the JSON object containing a champion's base stats.
 	 * @param championName
-	 * @return a JSON object with the following stats           
+	 * @return a JSON object with the following stats:        
 	 * 		hp, hpperlevel,mp,mpperlevel,movespeed,armor,armorperlevel,
-            spellblock,spellblockperlevel,attackrange,hpregen,hpregenperlevel,
-            mpregen,mpregenperlevel,crit,critperlevel,attackdamage,attackdamageperlevel
-            attackspeedoffset,attackspeedperlevel
+     *      spellblock,spellblockperlevel,attackrange,hpregen,hpregenperlevel,
+     *      mpregen,mpregenperlevel,crit,critperlevel,attackdamage,
+     *      attackdamageperlevel, attackspeedoffset,attackspeedperlevel
      * returns NULL if the specified champion does not exist.
 	 */
 	public JSONObject getChampionStats(String championName)
@@ -78,6 +78,7 @@ public class DataParser
 		return (Double)championStats.get("attackspeedperlevel"); 
 	}
 	// TODO: Consider hp regen in battle scenarios.
+	// TODO: Using this to commit.
 }
 
 
