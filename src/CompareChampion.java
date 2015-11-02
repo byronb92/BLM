@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+
+//TODO: Do I even need this class with SortChampions?
+// This is only a comparison between two champions, not all.
 
 /**
  * Set up comparisons between two champions.
@@ -19,9 +23,21 @@ public class CompareChampion {
 	{
 		
 	}
-	public void compareHealth(String champOne, String champTwo)
+	public String compareHealth()
 	{
-
+		if(champA.getHP() > champB.getHP())
+		{
+			double difference = champA.getHP() - champB.getHP();
+			return champA.getName() + "(" + difference + ")";
+		}
+		else if (champA.getHP() < champB.getHP())
+		{
+			double difference = champB.getHP() - champA.getHP();
+			return champB.getName() + "(" + difference + ")";
+		}
+		// Both champions have equal health.
+		return champA.getName() + " and " + 
+			champB.getName() + " have the same health.";
 	}
 	
 	public void compareAD(String champOne, String champTwo)
@@ -44,5 +60,6 @@ public class CompareChampion {
 	{
 		
 	}
+	
 
 }

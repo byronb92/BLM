@@ -2,8 +2,8 @@ import org.json.simple.JSONObject;
 
 public class Champion 
 {
-	String championName;
-	int currentLevel;
+	private String championName;
+	private int currentLevel;
 	
 	private double baseHP;
 	private double baseAD;
@@ -38,17 +38,19 @@ public class Champion
 	 */
 	public Champion(String championName)
 	{
-		DataParser dataParser = new DataParser();
-		JSONObject championStats = dataParser.getChampionStats(championName);
-		setBaseStats(dataParser, championStats);
+		ChampionStats championParser = new ChampionStats();
+		JSONObject championStats = championParser.getChampionStats(championName);
+		setChampionName(championName);
+		setBaseStats(championParser, championStats);
 	}
 	
 	
 	
 	/**
 	 * Ensure statistics match the current level of the champion.
+	 * This is called anytime the level of a champion is modified.
 	 */
-	public void update()
+	private void update()
 	{
 		hitPoints = baseHP + (hpPerLevel * (currentLevel - 1)) + bonusHP;
 		attackDamage = baseAD + (adPerLevel * (currentLevel - 1)) + bonusAD;
@@ -59,6 +61,7 @@ public class Champion
 	}
 	
 	public int getLevel()		{ return currentLevel; }
+	public String getName() 	{ return championName; }
 	public double getHP() 		{ return hitPoints; }
 	public double getAD() 		{ return attackDamage; }
 	public double getAP() 		{ return abilityPower; }
@@ -66,7 +69,17 @@ public class Champion
 	public double getMR() 		{ return magicResistance; }
 	public double getAS() 		{ return attackSpeed; }
 	
+	public void setLevel(int level) { 
+		currentLevel = level; 
+		update();
+	}
 	
+	private void setChampionName(String championName) {
+		this.championName = championName;
+	
+	}
+	
+
 	private void setBaseHP(double hp) { baseHP = hp; }
 	private void setBaseAD(double ad) { baseAD = ad; }
 	private void setBaseArmor(double armor) { baseArmor = armor; }
@@ -84,7 +97,7 @@ public class Champion
 	 * @param data	DataParser class used to get data for specified champion.
 	 * @param championStats JSON Object obtained from champion specific name.
 	 */
-	private void setBaseStats(DataParser data, JSONObject championStats)
+	private void setBaseStats(ChampionStats data, JSONObject championStats)
 	{
 		setBaseHP(data.getHP(championStats).doubleValue());
 		setBaseAD(data.getAD(championStats).doubleValue());
@@ -97,6 +110,7 @@ public class Champion
 		setBaseArmorPerLevel(data.getArmorPerLevel(championStats).doubleValue());
 		setBaseMRPerLevel(data.getMRPerLevel(championStats).doubleValue());
 		setBaseASPerLevel(data.getASPerLevel(championStats).doubleValue());
+		setLevel(1);
 	}
 	
 
