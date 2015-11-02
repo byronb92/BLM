@@ -57,7 +57,8 @@ public class Champion
 		abilityPower = bonusAP;
 		armor = baseArmor + (armPerLevel * (currentLevel - 1)) + bonusArmor;
 		magicResistance = baseMR + (mrPerLevel * (currentLevel - 1)) + bonusMR;
-		attackSpeed = baseAS + (asPerLevel * (currentLevel - 1)) + bonusAS;
+		//attackSpeed = baseAS + (baseAS * ((asPerLevel/100) * (currentLevel - 1)));
+		attackSpeed = baseAS * (1 + bonusAS) * (1 + (asPerLevel * (currentLevel - 1)) / 100);	
 	}
 	
 	public int getLevel()		{ return currentLevel; }

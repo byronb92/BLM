@@ -12,6 +12,7 @@ public class ChampionManager
 	}
 	
 	public ArrayList<Champion> getChampions() { return championList; }
+	
 	/**
 	 * TODO: Check structure, is an array list really the best option here?
 	 * Add a champion to the current list of champions we are analyzing.
@@ -23,6 +24,20 @@ public class ChampionManager
 		//TODO: If champion has been successfully created, add into the list.
 		championList.add(newChampion);
 	}
+	
+	/**
+	 * Add a champion to the level list with a specific level.
+	 * @param championName
+	 * @param currentLevel
+	 */
+	public void addChampion(String championName, int currentLevel)
+	{
+		Champion newChampion = new Champion(championName);
+		newChampion.setLevel(currentLevel);
+		addChampion(championName);
+		
+	}
+	
 	
 
 	/**

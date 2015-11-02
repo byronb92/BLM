@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
-//TODO: Do I even need this class with SortChampions?
-// This is only a comparison between two champions, not all.
+
 
 /**
  * Set up comparisons between two champions.
@@ -40,23 +39,70 @@ public class CompareChampion {
 			champB.getName() + " have the same health.";
 	}
 	
-	public void compareAD(String champOne, String champTwo)
+	public String compareAD()
 	{
-		
+		if(champA.getAD() > champB.getAD())
+		{
+			double difference = champA.getAD() - champB.getAD();
+			return champA.getName() + "(" + difference + ")";
+		}
+		else if (champA.getAD() < champB.getAD())
+		{
+			double difference = champB.getAD() - champA.getAD();
+			return champB.getName() + "(" + difference + ")";
+		}
+		return champA.getName() + " and " + 
+			champB.getName() + " have the same attack damage.";
 	}
+
+	public String compareArmor()
+	{
+		if(champA.getArmor() > champB.getArmor())
+		{
+			double difference = champA.getArmor() - champB.getArmor();
+			return champA.getName() + "(" + difference + ")";
+		}
+		else if (champA.getArmor() < champB.getArmor())
+		{
+			double difference = champB.getArmor() - champA.getArmor();
+			return champB.getName() + "(" + difference + ")";
+		}
+		return champA.getName() + " and " + 
+			champB.getName() + " have the same armor.";
+	}
+	public String compareMR()
+	{
+		if(champA.getMR() > champB.getMR())
+		{
+			double difference = champA.getArmor() - champB.getArmor();
+			return champA.getName() + "(" + difference + ")";
+		}
+		else if (champA.getMR() < champB.getMR())
+		{
+			double difference = champB.getMR() - champA.getMR();
+			return champB.getName() + "(" + difference + ")";
+		}
+		return champA.getName() + " and " + 
+			champB.getName() + " have the same magic resistance.";
+	}
+	public String compareAS(String champOne, String champTwo)
+	{
+		if(champA.getAS() > champB.getAS())
+		{
+			double difference = champA.getAS() - champB.getAS();
+			return champA.getName() + "(" + difference + ")";
+		}
+		else if (champA.getAS() < champB.getAS())
+		{
+			double difference = champB.getAS() - champA.getAS();
+			return champB.getName() + "(" + difference + ")";
+		}
+		return champA.getName() + " and " + 
+			champB.getName() + " have the same attack speed.";
+	}
+	
+	// TODO: Compare Ability Power from runes/masteries/items.
 	public void compareAP(String champOne, String champTwo)
-	{
-		
-	}
-	public void compareArmor(String champOne, String champTwo)
-	{
-		
-	}
-	public void compareMR(String champOne, String champTwo)
-	{
-		
-	}
-	public void compareAS(String champOne, String champTwo)
 	{
 		
 	}

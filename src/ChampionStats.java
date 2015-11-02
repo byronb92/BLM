@@ -59,7 +59,8 @@ public class ChampionStats
 		return (Double)championStats.get("spellblock"); 
 	}
 	public Double getAS(JSONObject championStats) { 
-		return (Double)championStats.get("attackspeedoffset"); 
+		//NOTE: 0.6251 / ( 1 + attack delay)
+		return (0.6251 / (1 + (Double)championStats.get("attackspeedoffset"))); 
 	}
 	
 	public Double getHPPerLevel(JSONObject championStats) { 

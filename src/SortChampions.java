@@ -9,8 +9,18 @@ import java.util.Map;
 
 
 public class SortChampions {
-	
 
+	/** Ensure all champions are the same level to ensure an accurate comparison.
+	 * @param currentLevel
+	 */
+	public void normalizeLevels(ArrayList<Champion> championList, int currentLevel)
+	{
+		for(Champion champion : championList) 
+		{
+			champion.setLevel(currentLevel);
+		}
+	}
+	
 	public void sortAllStats(ArrayList<Champion> championList)
 	{
 		
@@ -52,6 +62,32 @@ public class SortChampions {
 		}
 
 		for(Map.Entry<Double,String> entry : armorMap.entrySet()) {	
+			  System.out.println(entry);
+		}
+	}
+	
+	public void sortAS(ArrayList<Champion> championList)
+	{
+		TreeMap<Double,String> asMap = new TreeMap<Double,String>();
+		for (int i = 0; i < championList.size(); i++)
+		{
+			asMap.put(championList.get(i).getAS(), championList.get(i).getName());
+		}
+
+		for(Map.Entry<Double,String> entry : asMap .entrySet()) {	
+			  System.out.println(entry);
+		}
+	}
+	
+	public void sortMR(ArrayList<Champion> championList)
+	{
+		TreeMap<Double,String> mrMap = new TreeMap<Double,String>();
+		for (int i = 0; i < championList.size(); i++)
+		{
+			mrMap.put(championList.get(i).getAS(), championList.get(i).getName());
+		}
+
+		for(Map.Entry<Double,String> entry : mrMap .entrySet()) {	
 			  System.out.println(entry);
 		}
 	}
