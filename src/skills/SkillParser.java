@@ -11,6 +11,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import skills.champs.ChampionSkills;
+
 public class SkillParser 
 {
 	// TODO: Debugging variable, remove later.
@@ -37,13 +39,13 @@ public class SkillParser
 			JSONArray champSpells = (JSONArray)champArray.get("spells");
 			
 			
-			Skill[] champSkills = new Skill[4];
-			champSkills[0] = spellQ(champSpells, championName);
-			
-			
-			
-			//skillLabels(champSpells, championName);
-			return champSkills;
+			Skill[] champSkillArray = new Skill[4];
+			champSkillArray[0] = spellQ(champSpells, championName);
+			champSkillArray[1] = spellW(champSpells, championName);
+			champSkillArray[2] = spellE(champSpells, championName);
+			champSkillArray[3] = spellR(champSpells, championName);
+
+			return champSkillArray;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return null;
@@ -55,9 +57,49 @@ public class SkillParser
 		}	
 	}
 	
+	// TODO: Adjust variable names to match with each spell.
 	private Skill spellQ(JSONArray champSpells, String championName)
 	{
 		JSONObject champQ = (JSONObject)champSpells.get(0);
+		String skillid = (String)champQ.get("id");
+		String skillname = (String)champQ.get("name");
+		JSONArray cost = (JSONArray)champQ.get("cost");
+		JSONArray cooldown = (JSONArray)champQ.get("cooldown");
+		JSONArray effect = (JSONArray)champQ.get("effect");	
+		Skill champQSkill = new Skill(skillid, skillname, cost.toArray(), 
+				cooldown.toArray(), effect.toArray());
+		return champQSkill;
+	}
+	
+	private Skill spellW(JSONArray champSpells, String championName)
+	{
+		JSONObject champQ = (JSONObject)champSpells.get(1);
+		String skillid = (String)champQ.get("id");
+		String skillname = (String)champQ.get("name");
+		JSONArray cost = (JSONArray)champQ.get("cost");
+		JSONArray cooldown = (JSONArray)champQ.get("cooldown");
+		JSONArray effect = (JSONArray)champQ.get("effect");	
+		Skill champQSkill = new Skill(skillid, skillname, cost.toArray(), 
+				cooldown.toArray(), effect.toArray());
+		return champQSkill;
+	}
+	
+	private Skill spellE(JSONArray champSpells, String championName)
+	{
+		JSONObject champQ = (JSONObject)champSpells.get(2);
+		String skillid = (String)champQ.get("id");
+		String skillname = (String)champQ.get("name");
+		JSONArray cost = (JSONArray)champQ.get("cost");
+		JSONArray cooldown = (JSONArray)champQ.get("cooldown");
+		JSONArray effect = (JSONArray)champQ.get("effect");	
+		Skill champQSkill = new Skill(skillid, skillname, cost.toArray(), 
+				cooldown.toArray(), effect.toArray());
+		return champQSkill;
+	}
+	
+	private Skill spellR(JSONArray champSpells, String championName)
+	{
+		JSONObject champQ = (JSONObject)champSpells.get(3);
 		String skillid = (String)champQ.get("id");
 		String skillname = (String)champQ.get("name");
 		JSONArray cost = (JSONArray)champQ.get("cost");
