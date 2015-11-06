@@ -2,6 +2,7 @@ package skills;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -12,17 +13,13 @@ import org.json.simple.parser.ParseException;
 
 public class SkillParser 
 {
+	// TODO: Debugging variable, remove later.
 	public HashMap<String,String> uniqueLabels;
-	public SkillParser()
-	{
-		uniqueLabels = new HashMap<String,String>();
-	}
+	public ArrayList<String> allLabels;
 	
-	public void printUniqueLabels()
-	{
-		System.out.println(uniqueLabels.toString());
-	}
-	public JSONArray getChampionSkills(String championName)
+
+
+	public Skill[] getChampionSkills(String championName)
 	{
 		JSONParser parser = new JSONParser();
 		try 
@@ -38,9 +35,15 @@ public class SkillParser
 			JSONObject dataArray = (JSONObject)json.get("data");
 			JSONObject champArray = (JSONObject)dataArray.get(championName);
 			JSONArray champSpells = (JSONArray)champArray.get("spells");
-			spellQ(champSpells, championName);
-			skillLabels(champSpells, championName);
-			return champSpells;
+			
+			
+			Skill[] champSkills = new Skill[4];
+			champSkills[0] = spellQ(champSpells, championName);
+			
+			
+			
+			//skillLabels(champSpells, championName);
+			return champSkills;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return null;
@@ -51,6 +54,42 @@ public class SkillParser
 			return null;
 		}	
 	}
+	
+	private Skill spellQ(JSONArray champSpells, String championName)
+	{
+		JSONObject champQ = (JSONObject)champSpells.get(0);
+		String skillid = (String)champQ.get("id");
+		String skillname = (String)champQ.get("name");
+		JSONArray cost = (JSONArray)champQ.get("cost");
+		JSONArray cooldown = (JSONArray)champQ.get("cooldown");
+		JSONArray effect = (JSONArray)champQ.get("effect");	
+		Skill champQSkill = new Skill(skillid, skillname, cost.toArray(), 
+				cooldown.toArray(), effect.toArray());
+		return champQSkill;
+	}
+	
+	
+	
+	
+	
+	// TODO: Debugging constructor. Remove later.
+	public SkillParser()
+	{
+		uniqueLabels = new HashMap<String,String>();
+		allLabels = new ArrayList<String>();
+	}
+	
+	// TODO: Debugging methods, Remove later.
+	public void printUniqueLabels()
+	{
+		System.out.println(uniqueLabels.toString());
+	}
+	
+	public void printAllLabels()
+	{
+		System.out.println(allLabels.toString());
+	}
+	
 	
 	/**
 	 * Extract all labels to attempt to create algorithm organizing all spells.
@@ -70,6 +109,7 @@ public class SkillParser
 		for (int i = 0; i < labelArray.size(); i++)
 		{
 			uniqueLabels.put((String)labelArray.get(i), "");
+			allLabels.add((String)labelArray.get(i));
 			System.out.println(labelArray.get(i));
 		}
 		System.out.println("--------------------");
@@ -83,6 +123,7 @@ public class SkillParser
 		for (int i = 0; i < labelArrayW.size(); i++)
 		{
 			uniqueLabels.put((String)labelArrayW.get(i), "");
+			allLabels.add((String)labelArrayW.get(i));
 			System.out.println(labelArrayW.get(i));
 		}
 		System.out.println("--------------------");
@@ -96,6 +137,7 @@ public class SkillParser
 		for (int i = 0; i < labelArrayE.size(); i++)
 		{
 			uniqueLabels.put((String)labelArrayE.get(i), "");
+			allLabels.add((String)labelArrayE.get(i));
 			System.out.println(labelArrayE.get(i));
 		}
 		System.out.println("--------------------");
@@ -109,6 +151,7 @@ public class SkillParser
 		for (int i = 0; i < labelArrayR.size(); i++)
 		{
 			uniqueLabels.put((String)labelArrayR.get(i), "");
+			allLabels.add((String)labelArrayR.get(i));
 			System.out.println(labelArrayR.get(i));
 		}
 		System.out.println("--------------------");
@@ -116,14 +159,4 @@ public class SkillParser
 		System.out.println("");
 	}
 	
-	private void spellQ(JSONArray champSpells, String championName)
-	{
-		JSONObject champQ = (JSONObject)champSpells.get(0);
-		/**
-		 * cost[0] = level 1 cost.
-		 * damage --> array(effect[1])
-		 * "resource":"{{ cost }} Mana
-		 */
-		
-	}
 }
