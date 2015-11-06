@@ -72,6 +72,10 @@ public class Champion
 	public double getArmor() 	{ return armor; }
 	public double getMR() 		{ return magicResistance; }
 	public double getAS() 		{ return attackSpeed; }
+	public ChampionSkills getChampionSkills()
+	{
+		return champSkills;
+	}
 	
 	public void setLevel(int level) { 
 		currentLevel = level; 

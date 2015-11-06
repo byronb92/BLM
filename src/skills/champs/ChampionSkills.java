@@ -4,7 +4,6 @@ import skills.Skill;
 
 public abstract class ChampionSkills 
 {
-	String championName;
 	Skill[] champSkills;
 	protected int currentQLevel = 0;
 	protected int currentWLevel = 0;
@@ -24,6 +23,10 @@ public abstract class ChampionSkills
 		this.champSkills = champSkills;
 	}
 	
+	public int getQLevel()	 { return currentQLevel; }
+	public int getWLevel()	 { return currentWLevel; }
+	public int getELevel()	 { return currentELevel; }
+	public int getRLevel()	 { return currentRLevel; }
 	
 	public Skill getSpellQ() { return champSkills[0]; }
 	public Skill getSpellW() { return champSkills[1]; }

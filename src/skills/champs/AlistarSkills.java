@@ -19,8 +19,8 @@ public class AlistarSkills extends ChampionSkills
 	{ 
 		getSpellQ().setCastType(CastType.AOESHOT);
 		getSpellQ().setDamageType(DamageType.AP);	
-		Double qCost = (Double)getSpellQ().getCost()[super.currentQLevel];
-		Double qCooldown = (Double)getSpellQ().getCooldowns()[super.currentQLevel];
+		Double qCost = (Double)getSpellQ().getCost()[super.getQLevel()];
+		Double qCooldown = (Double)getSpellQ().getCooldowns()[super.getQLevel()];
 	}
 
 	@Override

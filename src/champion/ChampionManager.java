@@ -13,6 +13,8 @@ public class ChampionManager
 	}
 	
 	public ArrayList<Champion> getChampions() { return championList; }
+	// TODO: Potentially make into HashMap?
+	public Champion getChampion(int position) { return championList.get(position); }
 	
 	/**
 	 * TODO: Check structure, is an array list really the best option here?
@@ -35,8 +37,7 @@ public class ChampionManager
 	{
 		Champion newChampion = new Champion(championName);
 		newChampion.setLevel(currentLevel);
-		addChampion(championName);
-		
+		championList.add(newChampion);	
 	}
 	
 	
