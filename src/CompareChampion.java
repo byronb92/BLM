@@ -18,21 +18,36 @@ public class CompareChampion {
 		this.champB = champB;
 	}
 	
-	public void compareAll()
+	/**
+	 * Print out a message containing comparisons for each champion's stats.
+	 * @return
+	 */
+	public String compareAll()
 	{
-		
+		StringBuilder sb = new StringBuilder();
+		sb.append(compareHealth());
+		sb.append(System.getProperty("line.separator"));
+		sb.append(compareAD());
+		sb.append(System.getProperty("line.separator"));
+		sb.append(compareArmor());
+		sb.append(System.getProperty("line.separator"));
+		sb.append(compareMR());
+		sb.append(System.getProperty("line.separator"));
+		sb.append(compareAS());
+		System.out.println(sb.toString());
+		return sb.toString();
 	}
 	public String compareHealth()
 	{
 		if(champA.getHP() > champB.getHP())
 		{
 			double difference = champA.getHP() - champB.getHP();
-			return champA.getName() + "(" + difference + ")";
+			return "Health: " + champA.getName() + "(" + difference + ")";
 		}
 		else if (champA.getHP() < champB.getHP())
 		{
 			double difference = champB.getHP() - champA.getHP();
-			return champB.getName() + "(" + difference + ")";
+			return "Health: " + champB.getName() + "(" + difference + ")";
 		}
 		// Both champions have equal health.
 		return champA.getName() + " and " + 
@@ -44,12 +59,12 @@ public class CompareChampion {
 		if(champA.getAD() > champB.getAD())
 		{
 			double difference = champA.getAD() - champB.getAD();
-			return champA.getName() + "(" + difference + ")";
+			return "AD: " + champA.getName() + "(" + difference + ")";
 		}
 		else if (champA.getAD() < champB.getAD())
 		{
 			double difference = champB.getAD() - champA.getAD();
-			return champB.getName() + "(" + difference + ")";
+			return "AD: " + champB.getName() + "(" + difference + ")";
 		}
 		return champA.getName() + " and " + 
 			champB.getName() + " have the same attack damage.";
@@ -60,12 +75,12 @@ public class CompareChampion {
 		if(champA.getArmor() > champB.getArmor())
 		{
 			double difference = champA.getArmor() - champB.getArmor();
-			return champA.getName() + "(" + difference + ")";
+			return "Armor: " + champA.getName() + "(" + difference + ")";
 		}
 		else if (champA.getArmor() < champB.getArmor())
 		{
 			double difference = champB.getArmor() - champA.getArmor();
-			return champB.getName() + "(" + difference + ")";
+			return "Armor: " + champB.getName() + "(" + difference + ")";
 		}
 		return champA.getName() + " and " + 
 			champB.getName() + " have the same armor.";
@@ -75,27 +90,27 @@ public class CompareChampion {
 		if(champA.getMR() > champB.getMR())
 		{
 			double difference = champA.getArmor() - champB.getArmor();
-			return champA.getName() + "(" + difference + ")";
+			return "MR: " + champA.getName() + "(" + difference + ")";
 		}
 		else if (champA.getMR() < champB.getMR())
 		{
 			double difference = champB.getMR() - champA.getMR();
-			return champB.getName() + "(" + difference + ")";
+			return "MR: " + champB.getName() + "(" + difference + ")";
 		}
 		return champA.getName() + " and " + 
 			champB.getName() + " have the same magic resistance.";
 	}
-	public String compareAS(String champOne, String champTwo)
+	public String compareAS()
 	{
 		if(champA.getAS() > champB.getAS())
 		{
 			double difference = champA.getAS() - champB.getAS();
-			return champA.getName() + "(" + difference + ")";
+			return "Attack Speed: " + champA.getName() + "(" + difference + ")";
 		}
 		else if (champA.getAS() < champB.getAS())
 		{
 			double difference = champB.getAS() - champA.getAS();
-			return champB.getName() + "(" + difference + ")";
+			return "Attack Speed: " + champB.getName() + "(" + difference + ")";
 		}
 		return champA.getName() + " and " + 
 			champB.getName() + " have the same attack speed.";
