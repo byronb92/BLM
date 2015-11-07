@@ -1,26 +1,25 @@
 package skills.champs;
+import java.util.HashMap;
+
 import skills.Skill;
 
 
 public abstract class ChampionSkills 
 {
 	Skill[] champSkills;
+	protected HashMap<String, HashMap<String, Long>> skillOutput;
 	protected int currentQLevel = 0;
 	protected int currentWLevel = 0;
 	protected int currentELevel = 0;
 	protected int currentRLevel = 0;
 	
 
-	
-	// TODO: May be unnecssary. This is created in the SkillParser class.
-	public ChampionSkills()
-	{
-		champSkills = new Skill[5];		// Q, W, E, R, Passive
-	}
+
 	
 	public ChampionSkills(Skill[] champSkills)
 	{
 		this.champSkills = champSkills;
+		skillOutput = new HashMap<String,HashMap<String,Long>>();
 	}
 	
 	public int getQLevel()	 { return currentQLevel; }
@@ -33,14 +32,19 @@ public abstract class ChampionSkills
 	public Skill getSpellE() { return champSkills[2]; }
 	public Skill getSpellR() { return champSkills[3]; }
 	//TODO: Get passive spell.
+	public HashMap<String, HashMap<String, Long>>  getSkillOutput()
+	{
+		return skillOutput;
+	}
 	
 	
 	public abstract String[] skillOrder();
-	public abstract void editSpellQ();
-	public abstract void editSpellW();
-	public abstract void editSpellE();	
-	public abstract void editSpellR();
+	public abstract void spellQ();
+	public abstract void spellW();
+	public abstract void spellE();
+	public abstract void spellR();
 	public abstract void editSpellPassive();
+	//public abstract void allSpells();
 	
 	// TODO: Ensure skill order has been initiated.
 	public void updateSkilLevels(int currentLevel)
@@ -56,6 +60,10 @@ public abstract class ChampionSkills
 			else if (skillOrder()[i].equals("E")) 	{ currentELevel++; }
 			else									{ currentRLevel++; }
 		}
+		spellQ();
+		spellW();
+		spellE();
+		spellR();
 	}
 
 }

@@ -6,10 +6,10 @@ import skills.SkillEnums.*;
 public class Skill {
 	private String id;
 	private String name;
-	private String description;	// TODO: Add skill descriptions.
+	private String description;		// TODO: Add skill descriptions.
 	
-	private Object[] cost;			// TODO: spells --> cost[5];
-	private Object[] cooldown;		// TOOD: spells --> cooldown[5]
+	private Object[] cost;			
+	private Object[] cooldown;	
 	private Object[] effect;	
 	
 	private	Resource resource;	

@@ -7,11 +7,11 @@ public class SkillEnums {
 	}
 	
 	public enum CastType {
-		SELF, ALLY, ENEMY, AOESHOT, LINESHOT
+		SELF, ALLY, SELFANDALLY, ENEMY, AOESHOT, LINESHOT
 	}
 	
 	public enum DamageType {
-		AD, AP, TRUE, HEAL, SHIELD, MOD, NULL
+		AD, AP, TRUE, HYBRID, HEAL, SHIELD, MOD, NULL
 	}
 
 }

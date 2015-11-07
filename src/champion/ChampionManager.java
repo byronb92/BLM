@@ -17,7 +17,6 @@ public class ChampionManager
 	public Champion getChampion(int position) { return championList.get(position); }
 	
 	/**
-	 * TODO: Check structure, is an array list really the best option here?
 	 * Add a champion to the current list of champions we are analyzing.
 	 * @param championName
 	 */
@@ -29,7 +28,7 @@ public class ChampionManager
 	}
 	
 	/**
-	 * Add a champion to the level list with a specific level.
+	 * Add a champion to the champion list with a specific level.
 	 * @param championName
 	 * @param currentLevel
 	 */
